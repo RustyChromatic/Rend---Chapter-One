@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuvb6g6flvcu3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4chvn"]
+albedo_color = Color(1, 1, 0.184314, 1)
+metallic = 0.91
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.549382, 0.731916, 0.123133, 1)
+emission_energy_multiplier = 5.14
+normal_scale = 2.66
+refraction_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ot3ed"]
+material = SubResource("StandardMaterial3D_4chvn")
+radial_segments = 5
+rings = 3
+
+[sub_resource type="Gradient" id="Gradient_gkrvt"]
+colors = PackedColorArray(0.876582, 0.909894, 0.224838, 1, 0.455543, 0.455543, 0, 1)
+
+[node name="MuzzleDebris" type="Node3D"]
+transform = Transform3D(-0.251389, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(0.347017, 0, 0, 0, 0.478644, 0, 0, 0, 0.478644, 0, 0, 0)
+emitting = false
+amount = 4
+lifetime = 0.25
+one_shot = true
+preprocess = 0.55
+explosiveness = 0.55
+randomness = 0.31
+lifetime_randomness = 0.14
+fixed_fps = 20
+mesh = SubResource("SphereMesh_ot3ed")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+spread = 82.5
+flatness = 0.6
+radial_accel_min = 25.0
+radial_accel_max = 55.55
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color = Color(0.871381, 0.777478, 0, 1)
+color_ramp = SubResource("Gradient_gkrvt")
