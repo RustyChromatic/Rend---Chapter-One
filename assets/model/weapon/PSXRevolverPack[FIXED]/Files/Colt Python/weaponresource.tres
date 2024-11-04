@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://dglnkgcgrfdgi"]
+
+[ext_resource type="ArrayMesh" uid="uid://cwhjatxcwpbtt" path="res://assets/model/weapon/PSXRevolverPack[FIXED]/Files/Colt Python/ColtPyton.obj" id="1_2vra0"]
+[ext_resource type="Script" path="res://data/scripts/weapon/WeaponResource.gd" id="1_wgnhi"]
+
+[resource]
+script = ExtResource("1_wgnhi")
+name = &"Single Action Army"
+postition = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+mesh = ExtResource("1_2vra0")
+shadow = true
+damage_amount = 5.6
