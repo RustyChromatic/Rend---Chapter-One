@@ -3,8 +3,8 @@
 
 # Notice
 Rend Source Code.
-Do not redistribute, unless you are carrying on the project.
-Not for public viewing until full release.
+This does not have the game, and requires to be fully compiled within the Godot Game Engine.
+Do not pawn this code off as your own.
 
 # Team
 * RustyChroma (Main Developer)
