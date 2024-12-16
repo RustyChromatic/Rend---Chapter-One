@@ -1,0 +1,211 @@
+[gd_scene load_steps=17 format=3 uid="uid://y2syo4axu3ql"]
+
+[ext_resource type="Texture2D" uid="uid://dby6gjufmaj83" path="res://assets/skybox/sandbox/DAYSKY.hdr" id="1_ppp5s"]
+[ext_resource type="Texture2D" uid="uid://5mhqrj55w8v" path="res://assets/textures/world/128x128/Grass/Grass_01-128x128.png" id="2_wr18f"]
+[ext_resource type="PackedScene" uid="uid://0170u5k00g3q" path="res://scene/other/player/player.tscn" id="2_ywewq"]
+[ext_resource type="ArrayMesh" uid="uid://cxxl2hfsqv1ps" path="res://assets/model/cars/Car 01/Car.obj" id="3_v42xs"]
+[ext_resource type="Texture2D" uid="uid://g7l1sx26p2f7" path="res://assets/model/cars/Car 01/car_gray.png" id="4_cd3iu"]
+[ext_resource type="PackedScene" uid="uid://dq0cvc64tgraw" path="res://assets/model/people/cilivan/male_01/male_casual.fbx" id="6_28ttw"]
+[ext_resource type="Texture2D" uid="uid://ct72jr6pkgmyu" path="res://scene/other/hud/crosshair(1).png" id="6_l315p"]
+[ext_resource type="Script" path="res://data/scripts/entity/NPCs/Pathfinding.gd" id="7_ig7dn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_k5t26"]
+panorama = ExtResource("1_ppp5s")
+
+[sub_resource type="Sky" id="Sky_88t23"]
+sky_material = SubResource("PanoramaSkyMaterial_k5t26")
+
+[sub_resource type="Environment" id="Environment_txmi2"]
+background_mode = 2
+sky = SubResource("Sky_88t23")
+sky_custom_fov = 111.1
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_4sdnq"]
+vertices = PackedVector3Array(-15.2889, 1, -18.8517, -13.2889, 1, -18.8517, -13.2889, 1, -21.3517, -15.7889, 1, -18.3517, -17.7889, 1, -19.3517, -17.2889, 1, -18.8517, -17.0389, 1, -14.3517, -15.7889, 1, -14.1017, -20.7889, 1, -18.8517, -20.0389, 1, -19.3517, -27.5389, 1, -21.3517, -27.5389, 1, -13.6017, -20.7889, 1, -13.8517, -17.5389, 1, -11.8517, -15.5389, 1, -11.3517, -12.2889, 1, -11.6017, -27.5389, 1, 21.3983, 16.7111, 1, 21.3983, 16.7111, 1, -21.3517, -12.2889, 1, -18.3517, -20.2889, 1, -11.8517, -20.7889, 1, -12.3517, -19.5389, 3, -17.3517, -19.5389, 3, -15.1017, -18.2889, 3, -15.1017, -18.2889, 3, -17.3517, -14.7889, 3, -14.6017, -13.2889, 3, -14.6017, -13.5389, 3, -16.8517, -14.7889, 3, -16.8517, -19.2889, 1.25, -15.8517, -19.2889, 1.25, -15.1017, -18.5389, 1.25, -15.3517, -18.7889, 1.25, -16.1017, -14.2889, 1.25, -15.6017, -14.2889, 1.25, -14.6017, -13.7889, 1.25, -14.6017, -13.7889, 1.25, -15.6017, -19.5389, 2.25, -12.8517, -18.2889, 2.25, -13.1017, -18.2889, 2.25, -13.6017, -19.7889, 2.25, -13.6017, -14.2889, 2.25, -12.3517, -13.2889, 2.25, -12.6017, -13.2889, 2.25, -13.1017, -14.7889, 2.25, -13.1017)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 5, 0), PackedInt32Array(0, 5, 4), PackedInt32Array(0, 4, 2), PackedInt32Array(7, 6, 3), PackedInt32Array(3, 6, 5), PackedInt32Array(8, 10, 9), PackedInt32Array(4, 9, 2), PackedInt32Array(2, 9, 10), PackedInt32Array(12, 11, 8), PackedInt32Array(8, 11, 10), PackedInt32Array(6, 7, 13), PackedInt32Array(13, 7, 14), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(1, 2, 19), PackedInt32Array(19, 2, 18), PackedInt32Array(13, 14, 20), PackedInt32Array(20, 14, 16), PackedInt32Array(11, 12, 21), PackedInt32Array(21, 20, 11), PackedInt32Array(11, 20, 16), PackedInt32Array(16, 14, 15), PackedInt32Array(15, 19, 18), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 45)]
+agent_height = 1.38
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nm3yd"]
+size = Vector3(2.64886, 2.00446, 6.12519)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phu8m"]
+albedo_texture = ExtResource("4_cd3iu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bi030"]
+albedo_color = Color(0.637079, 0.437468, 0.235872, 1)
+albedo_texture = ExtResource("2_wr18f")
+uv1_scale = Vector3(16.245, 16.245, 16.245)
+texture_filter = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vaeer"]
+height = 2.32564
+
+[node name="World" type="Node3D"]
+
+[node name="Env" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.680721, -0.732543, -3.20205e-08, 0, -4.37114e-08, 1, -0.732543, 0.680721, 2.97553e-08, 0, 0, 0)
+light_energy = 1.702
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_txmi2")
+
+[node name="player" parent="." instance=ExtResource("2_ywewq")]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, -0.368011, 1.82336, -0.148043)
+
+[node name="head" parent="player" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503833, 1.59768, 0.0604611)
+
+[node name="TextureRect" parent="player/head/Camera3D" index="0"]
+texture = ExtResource("6_l315p")
+
+[node name="Skeleton3D" parent="player/head/Hand/gun2/arms_armature" index="0"]
+bones/0/rotation = Quaternion(-0.0159083, 0, 0, 0.999873)
+bones/0/scale = Vector3(1, 1, 1)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.0536029, 0.737367, -0.266629, 0.618325)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.181302, 0.00512337, -0.054099, 0.981925)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.0536029, -0.737367, 0.266629, 0.618325)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.181302, -0.00512337, 0.054099, 0.981925)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(0.659571, 1.30507, -0.0492)
+bones/8/rotation = Quaternion(-0.0217315, -0.067059, -0.307516, 0.948928)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(1.19209e-07, -3.23683e-08, -1.30385e-08)
+bones/9/rotation = Quaternion(-0.0128282, 0.0155891, -0.708253, 0.70567)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.105799, 0.772466, 0.0199139, 0.625865)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(-1.86265e-08, 0.0569673, 7.54371e-08)
+bones/11/rotation = Quaternion(0.00791746, -0.00816952, -0.0449274, 0.998925)
+bones/12/rotation = Quaternion(0.10753, -0.0193364, 0.0269477, 0.993648)
+bones/13/rotation = Quaternion(0.0198929, 0.0276081, 0.00896445, 0.999381)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.0671288, 0.445742, 0.451072, 0.770287)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.195125, -0.0176539, 0.000926717, 0.980619)
+bones/16/rotation = Quaternion(0.0168805, -0.0201639, -0.00575985, 0.999638)
+bones/18/position = Vector3(6.98492e-09, 0.0556264, 1.99907e-07)
+bones/18/rotation = Quaternion(-0.03365, 0.0149641, 0.00296245, 0.999317)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(0.0935433, -0.0193586, 0.00612708, 0.995408)
+bones/20/rotation = Quaternion(0.0259376, -0.0208948, 0.00278167, 0.999441)
+bones/22/position = Vector3(-9.31323e-10, 0.0563297, -4.44707e-08)
+bones/22/rotation = Quaternion(-0.000612098, 0.018138, 0.016489, 0.999699)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/rotation = Quaternion(0.0810415, -0.00791654, 0.0211948, 0.996454)
+bones/24/rotation = Quaternion(0.0411368, -0.000345002, -4.13345e-06, 0.999153)
+bones/25/scale = Vector3(1, 1, 1)
+bones/26/position = Vector3(2.98023e-08, 0.0538128, 1.3411e-07)
+bones/26/rotation = Quaternion(0.0532667, -0.0382666, -0.00302731, 0.997842)
+bones/27/rotation = Quaternion(0.0357407, -0.00502937, -0.0124165, 0.999271)
+bones/28/scale = Vector3(1, 1, 1)
+bones/29/position = Vector3(-0.659571, 1.30507, -0.0492)
+bones/29/rotation = Quaternion(-0.0217315, 0.067059, 0.307516, 0.948928)
+bones/30/position = Vector3(-1.19209e-07, -3.23683e-08, -1.30385e-08)
+bones/30/rotation = Quaternion(-0.0128282, -0.0155891, 0.708253, 0.70567)
+bones/30/scale = Vector3(1, 1, 1)
+bones/31/position = Vector3(0.00549161, 0.0396589, 0.027655)
+bones/31/rotation = Quaternion(0.105799, -0.772466, -0.0199139, 0.625865)
+bones/31/scale = Vector3(1, 1, 1)
+bones/32/position = Vector3(1.86265e-08, 0.0569673, 7.54371e-08)
+bones/32/rotation = Quaternion(0.00791746, 0.00816952, 0.0449274, 0.998925)
+bones/33/rotation = Quaternion(0.10753, 0.0193364, -0.0269477, 0.993648)
+bones/34/rotation = Quaternion(0.0198929, -0.0276081, -0.00896445, 0.999381)
+bones/34/scale = Vector3(1, 1, 1)
+bones/35/rotation = Quaternion(0.0671288, -0.445742, -0.451072, 0.770287)
+bones/35/scale = Vector3(1, 1, 1)
+bones/36/rotation = Quaternion(0.195125, 0.0176539, -0.000926717, 0.980619)
+bones/37/rotation = Quaternion(0.0168805, 0.0201639, 0.00575985, 0.999638)
+bones/38/position = Vector3(0.00860382, 0.0428563, 0.00725436)
+bones/39/position = Vector3(-6.98492e-09, 0.0556264, 1.99907e-07)
+bones/39/rotation = Quaternion(-0.03365, -0.0149641, -0.00296245, 0.999317)
+bones/39/scale = Vector3(1, 1, 1)
+bones/40/rotation = Quaternion(0.0935433, 0.0193586, -0.00612708, 0.995408)
+bones/41/rotation = Quaternion(0.0259376, 0.0208948, -0.00278167, 0.999441)
+bones/42/position = Vector3(0.00786887, 0.0406033, -0.0111368)
+bones/43/position = Vector3(9.31323e-10, 0.0563297, -4.44707e-08)
+bones/43/rotation = Quaternion(-0.000612098, -0.018138, -0.016489, 0.999699)
+bones/43/scale = Vector3(1, 1, 1)
+bones/44/rotation = Quaternion(0.0810415, 0.00791654, -0.0211948, 0.996454)
+bones/45/rotation = Quaternion(0.0411368, 0.000345002, 4.13345e-06, 0.999153)
+bones/46/scale = Vector3(1, 1, 1)
+bones/47/position = Vector3(-2.98023e-08, 0.0538128, 1.3411e-07)
+bones/47/rotation = Quaternion(0.0532667, 0.0382666, 0.00302731, 0.997842)
+bones/48/rotation = Quaternion(0.0357407, 0.00502937, 0.0124165, 0.999271)
+bones/49/scale = Vector3(1, 1, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_4sdnq")
+
+[node name="Objects" type="Node" parent="NavigationRegion3D"]
+
+[node name="Prop" type="Node" parent="NavigationRegion3D/Objects"]
+
+[node name="Cars" type="Node" parent="NavigationRegion3D/Objects/Prop"]
+
+[node name="Car" type="MeshInstance3D" parent="NavigationRegion3D/Objects/Prop/Cars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9518, 0.5, -15.5422)
+mesh = ExtResource("3_v42xs")
+skeleton = NodePath("../../..")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="NavigationRegion3D/Objects/Prop/Cars/Car"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Objects/Prop/Cars/Car/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113831, 1.14828, 0.0180321)
+shape = SubResource("BoxShape3D_nm3yd")
+
+[node name="Car2" type="MeshInstance3D" parent="NavigationRegion3D/Objects/Prop/Cars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0671, 0.5, -15.0555)
+mesh = ExtResource("3_v42xs")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_phu8m")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="NavigationRegion3D/Objects/Prop/Cars/Car2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12476, 0.0594883, -0.473186)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Objects/Prop/Cars/Car2/RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113831, 1.14828, 0.0180321)
+shape = SubResource("BoxShape3D_nm3yd")
+
+[node name="Grnd" type="Node" parent="NavigationRegion3D/Objects"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Objects/Grnd"]
+transform = Transform3D(15.5375, 0, 0, 0, 1, 0, 0, 0, 43.7034, -5.36164, 0, 0)
+use_collision = true
+size = Vector3(2.91904, 1, 1)
+material = SubResource("StandardMaterial3D_bi030")
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Human" type="Node" parent="NPCs"]
+
+[node name="Male" type="Node" parent="NPCs/Human"]
+
+[node name="Male_01" type="CharacterBody3D" parent="NPCs/Human/Male"]
+script = ExtResource("7_ig7dn")
+
+[node name="male_casual" parent="NPCs/Human/Male/Male_01" instance=ExtResource("6_28ttw")]
+transform = Transform3D(1.52683, 0, 0, 0, 1.38386, 0, 0, 0, 1.97877, -11.1681, 0.499999, -14.6761)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Human/Male/Male_01"]
+transform = Transform3D(1.384, 0, 0, 0, 1.384, 0, 0, 0, 1.384, -11.1344, 1.87901, -14.7676)
+shape = SubResource("CapsuleShape3D_vaeer")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NPCs/Human/Male/Male_01"]
+
+[node name="Target" type="Marker3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8122, 0, 5.58054)
+
+[editable path="player"]
+[editable path="player/head/Hand/gun1"]
+[editable path="player/head/Hand/gun2"]
+[editable path="NPCs/Human/Male/Male_01/male_casual"]

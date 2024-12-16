@@ -1,88 +1,99 @@
-[gd_scene load_steps=11 format=3 uid="uid://6iskypsxxkws"]
+[gd_scene load_steps=15 format=3 uid="uid://6iskypsxxkws"]
 
 [ext_resource type="PackedScene" uid="uid://0170u5k00g3q" path="res://scene/other/player/player.tscn" id="1_gh75w"]
-[ext_resource type="Texture2D" uid="uid://dppohvindbers" path="res://Valve_1m x 1m.png" id="2_cai2h"]
-[ext_resource type="PackedScene" uid="uid://dgdxvmuif7la5" path="res://assets/model/basic/pipes/pipe000.glb" id="3_csfqj"]
+[ext_resource type="Script" path="res://data/scripts/hud/pause.gd" id="1_t60k7"]
+[ext_resource type="Texture2D" uid="uid://dby6gjufmaj83" path="res://assets/skybox/sandbox/DAYSKY.hdr" id="2_0pe2p"]
+[ext_resource type="Texture2D" uid="uid://sibq1u5ae5g8" path="res://assets/textures/dev/Dark/texture_01.png" id="4_p8xlv"]
 [ext_resource type="PackedScene" uid="uid://di174qydv131i" path="res://scene/other/hud/weaponhudv1.tscn" id="4_rxff8"]
-[ext_resource type="PackedScene" uid="uid://cf2ud6xmrn7v8" path="res://scene/other/entity/enemy/enemy.tscn" id="5_tli3i"]
+[ext_resource type="Texture2D" uid="uid://b1xymevmxmmhs" path="res://assets/textures/dev/Dark/texture_13.png" id="5_8utkt"]
+[ext_resource type="PackedScene" uid="uid://uv4roboic2oq" path="res://scene/other/hud/pause_menu.tscn" id="7_c62ck"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fx0w3"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sio5m"]
+panorama = ExtResource("2_0pe2p")
 
-[sub_resource type="Sky" id="Sky_mxr2h"]
-sky_material = SubResource("ProceduralSkyMaterial_fx0w3")
+[sub_resource type="Sky" id="Sky_anlvk"]
+sky_material = SubResource("PanoramaSkyMaterial_sio5m")
 
-[sub_resource type="Environment" id="Environment_omsxq"]
+[sub_resource type="Environment" id="Environment_rpui7"]
 background_mode = 2
-sky = SubResource("Sky_mxr2h")
+sky = SubResource("Sky_anlvk")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxk1"]
+albedo_texture = ExtResource("4_p8xlv")
+
 [sub_resource type="BoxMesh" id="BoxMesh_wlybr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vij2y"]
-albedo_texture = ExtResource("2_cai2h")
-albedo_texture_force_srgb = true
-uv1_triplanar = true
-uv2_triplanar = true
-uv2_triplanar_sharpness = 1.31951
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbwu1"]
+albedo_texture = ExtResource("5_8utkt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hfpa"]
+albedo_texture = ExtResource("5_8utkt")
 
 [node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.162552, 0.160187, 0.0153656)
+script = ExtResource("1_t60k7")
 
 [node name="env" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 27.775, -48.245)
+layers = 3
 light_energy = 1.06
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
-environment = SubResource("Environment_omsxq")
+environment = SubResource("Environment_rpui7")
 
 [node name="player" parent="." instance=ExtResource("1_gh75w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0417004, 1.05608, 10.4962)
 
 [node name="stage" type="Node" parent="."]
 
 [node name="objects" type="Node3D" parent="stage"]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="stage/objects"]
-transform = Transform3D(39.7094, 0, 0, 0, 1, 0, 0, 0, 36.8187, 0.0187421, -0.463798, 0.0129099)
+transform = Transform3D(91.7225, 0, 0, 0, 1.01956, 0, 0, 0, 32.8215, 0.0187421, -0.463798, 10.9692)
+material_override = SubResource("StandardMaterial3D_nyxk1")
 use_collision = true
 mesh = SubResource("BoxMesh_wlybr")
-material = SubResource("StandardMaterial3D_vij2y")
 
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="stage/objects"]
-transform = Transform3D(39.7094, 0, 0, 0, 1, 0, 0, 0, 36.8187, -54.5076, -0.463798, 0.0129099)
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="stage/objects"]
+transform = Transform3D(31.3612, 0, 0, 0, 1.01956, 0, 0, 0, 32.8215, 26.6718, 2.09483, 10.9692)
+material_override = SubResource("StandardMaterial3D_nyxk1")
 use_collision = true
 mesh = SubResource("BoxMesh_wlybr")
-material = SubResource("StandardMaterial3D_vij2y")
-
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="stage/objects"]
-transform = Transform3D(39.7094, 0, 0, 0, 1, 0, 0, 0, 36.8187, -25.1163, -0.463798, -41.4681)
-use_collision = true
-mesh = SubResource("BoxMesh_wlybr")
-material = SubResource("StandardMaterial3D_vij2y")
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="stage/objects"]
-transform = Transform3D(39.7094, 0, 0, 0, 1, 0, 0, 0, 36.8187, 0.0187421, -0.463798, 40.9121)
-use_collision = true
-mesh = SubResource("BoxMesh_wlybr")
-material = SubResource("StandardMaterial3D_vij2y")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="stage/objects"]
-transform = Transform3D(39.7094, 0, 0, 0, 1, 0, 0, 0, 36.8187, 46.8801, 0.0309429, 0)
+transform = Transform3D(10.1971, 0, 0, 0, 1.01956, 0, 0, 0, 10.3395, 0.0187421, -0.463798, -23.2102)
+material_override = SubResource("StandardMaterial3D_xbwu1")
 use_collision = true
 mesh = SubResource("BoxMesh_wlybr")
-material = SubResource("StandardMaterial3D_vij2y")
+material = SubResource("StandardMaterial3D_2hfpa")
 
-[node name="pipe000" parent="." instance=ExtResource("3_csfqj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07969, 1.87226, 8.20092)
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="stage/objects"]
+transform = Transform3D(2.8821, 0, 0, 0, 0.828304, 0, 0, 0, 2.87635, -0.196775, -0.463798, -7.35376)
+material_override = SubResource("StandardMaterial3D_xbwu1")
+use_collision = true
+mesh = SubResource("BoxMesh_wlybr")
+material = SubResource("StandardMaterial3D_2hfpa")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="stage/objects"]
+transform = Transform3D(2.8821, 0, 0, 0, 0.828304, 0, 0, 0, 2.87635, 2.90394, -0.598162, -11.2063)
+material_override = SubResource("StandardMaterial3D_xbwu1")
+use_collision = true
+mesh = SubResource("BoxMesh_wlybr")
+material = SubResource("StandardMaterial3D_2hfpa")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="stage/objects"]
+transform = Transform3D(2.8821, 0, 0, 0, 0.828304, 0, 0, 0, 2.87635, -1.04486, -0.568142, -15.6838)
+material_override = SubResource("StandardMaterial3D_xbwu1")
+use_collision = true
+mesh = SubResource("BoxMesh_wlybr")
+material = SubResource("StandardMaterial3D_2hfpa")
 
 [node name="Control" parent="." instance=ExtResource("4_rxff8")]
 
-[node name="Enemy" parent="." instance=ExtResource("5_tli3i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5857, 1.20224, -9.48063)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_tli3i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5368, 1.12831, -4.30975)
+[node name="PauseMenu" parent="." instance=ExtResource("7_c62ck")]
+visible = false

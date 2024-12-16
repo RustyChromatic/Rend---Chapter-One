@@ -5,8 +5,11 @@
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -16.0
+offset_top = -144.0
+offset_right = 24.0
+offset_bottom = -104.0
+scale = Vector2(1.76, 1.76)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -15,12 +18,21 @@ offset_top = 552.0
 offset_right = 208.0
 offset_bottom = 696.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+[node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 112.0
-offset_right = 200.0
-offset_bottom = 150.0
+offset_left = -0.613638
+offset_top = -37.7956
+offset_right = 39.3864
+offset_bottom = 2.20441
+scale = Vector2(1.405, 0.934916)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 2.42641
+offset_top = 5.46963
+offset_right = 82.4264
+offset_bottom = 43.4696
+scale = Vector2(0.640395, 1)
 bbcode_enabled = true
 text = "6/6 ROUNDS"
 fit_content = true

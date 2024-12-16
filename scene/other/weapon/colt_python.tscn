@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://ds73b2f20kvma"]
+
+[ext_resource type="PackedScene" uid="uid://dspf3lauxv6it" path="res://assets/model/weapon/PSXRevolverPack[FIXED]/Files/Colt Python/Colt Python.fbx" id="1_fsdrk"]
+[ext_resource type="Script" path="res://data/scripts/weapon/animation_python_shoot.gd" id="2_jriqv"]
+[ext_resource type="Texture2D" uid="uid://covpxo6por68g" path="res://assets/model/weapon/untitled_ColtPython.png" id="2_sisuu"]
+[ext_resource type="Texture2D" uid="uid://xb3xxeqdafxa" path="res://assets/model/weapon/untitled_cylinderRefV2.jpg" id="3_hk1ym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2d4y"]
+albedo_texture = ExtResource("2_sisuu")
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pm1k"]
+albedo_color = Color(0.930234, 0.908699, 0.934108, 1)
+albedo_texture = ExtResource("3_hk1ym")
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.45
+rim_tint = 1.0
+ao_light_affect = 0.98
+refraction_enabled = true
+refraction_scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucoaa"]
+albedo_texture = ExtResource("2_sisuu")
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.45
+
+[sub_resource type="Animation" id="Animation_hpbk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPCyilnder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7vgka"]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 0.535887, 1),
+"update": 0,
+"values": [Vector3(0.48, -1.127, -0.66), Vector3(-0.42, -1.127, -0.66), Vector3(0.48, -1.127, -0.66)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPCyilnder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 1.62451, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.14159, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v5c1a"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.4, 2.96667),
+"transitions": PackedFloat32Array(1, 0.31864, 0.5),
+"update": 0,
+"values": [Vector3(0.48, -1.127, -0.66), Vector3(0.48, -1.305, -0.66), Vector3(0.48, -1.127, -0.66)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddwfd"]
+_data = {
+"RESET": SubResource("Animation_hpbk2"),
+"fire": SubResource("Animation_7vgka"),
+"idle": SubResource("Animation_v5c1a")
+}
+
+[node name="Colt Python" instance=ExtResource("1_fsdrk")]
+script = ExtResource("2_jriqv")
+
+[node name="CPBody" parent="." index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_p2d4y")
+
+[node name="CPCyilnder" parent="." index="1"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.14293, 1.34461, -0.00422821)
+surface_material_override/0 = SubResource("StandardMaterial3D_0pm1k")
+
+[node name="CPTrigger&Hammer" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ucoaa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ddwfd")
+}

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwdby1goyr7r3"]
+
+[ext_resource type="Script" path="res://data/scripts/weapon/loadweapon.gd" id="1_1ookc"]
+[ext_resource type="Script" path="res://data/scripts/weapon/WeaponResource.gd" id="3_14w5x"]
+
+[node name="weapon" type="Node3D"]
+script = ExtResource("1_1ookc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+script = ExtResource("3_14w5x")

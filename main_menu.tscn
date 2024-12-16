@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlvwm0uy566xy"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_5daap"]
+[ext_resource type="AudioStream" uid="uid://b5kr48o36d7wm" path="res://Clair de Lune (Studio Version).mp3" id="2_0qpbk"]
+[ext_resource type="Texture2D" uid="uid://l022yjt4g4u5" path="res://icon.svg" id="3_ao62g"]
+[ext_resource type="Texture2D" uid="uid://ck5djt7v2qqo7" path="res://REND.png" id="4_7oivi"]
+[ext_resource type="Texture2D" uid="uid://dc5r8chpbaskv" path="res://images.jpg" id="5_pr0sj"]
+[ext_resource type="Texture2D" uid="uid://bv03swak4wtpf" path="res://20241215_223356.jpg" id="6_tyjnu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_5daap")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -4.0
+offset_right = 34.0
+offset_bottom = 73.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0qpbk")
+pitch_scale = 0.6
+autoplay = true
+parameters/looping = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-928, 508)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ao62g")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -960.0
+offset_top = 460.0
+offset_right = -864.0
+offset_bottom = 500.0
+text = "BUILT IN"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -896.0
+offset_top = 508.0
+offset_right = -752.0
+offset_bottom = 548.0
+text = "Ver. Closed Dev Beta"
+
+[node name="Rend" type="Sprite2D" parent="."]
+position = Vector2(0, -132)
+texture = ExtResource("4_7oivi")
+
+[node name="Images" type="Sprite2D" parent="."]
+position = Vector2(824, 380)
+texture = ExtResource("5_pr0sj")
+
+[node name="20241215223356" type="Sprite2D" parent="."]
+position = Vector2(824, 140)
+scale = Vector2(0.307297, 0.271632)
+texture = ExtResource("6_tyjnu")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

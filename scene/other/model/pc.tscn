@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://s2effsul0bnb"]
+
+[ext_resource type="PackedScene" uid="uid://bfhy8dcg18871" path="res://assets/model/basic/world/pc/pc.blend" id="1_7x1tu"]
+[ext_resource type="Texture2D" uid="uid://s0to1qtsb5yc" path="res://assets/model/basic/world/pc/close-old-computer-monitor-isolated-600nw-181321214.webp" id="2_j74no"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tekul"]
+albedo_texture = ExtResource("2_j74no")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrvhe"]
+size = Vector3(1, 1.09949, 1)
+
+[node name="pc" instance=ExtResource("1_7x1tu")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tekul")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(5.30124, 0, 0, 0, 4.40026, 0, 0, 0, 3.72004, 0.402015, 0.218885, -0.00693226)
+shape = SubResource("BoxShape3D_hrvhe")

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://0170u5k00g3q"]
+
+[ext_resource type="Script" path="res://data/scripts/entity/player/player.gd" id="1_a478p"]
+[ext_resource type="Script" path="res://data/scripts/weapon/hitscanhandle.gd" id="2_3lw4o"]
+[ext_resource type="Texture2D" uid="uid://ct72jr6pkgmyu" path="res://scene/other/hud/crosshair(1).png" id="3_6p4gg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vcdfa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vthbu"]
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_a478p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vcdfa")
+
+[node name="HeadOriginPos" type="Node3D" parent="."]
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3381, 0)
+
+[node name="Head" type="Node3D" parent="HeadOriginPos"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00264835, 0.159204, -0.330828)
+
+[node name="Camera3D" type="Camera3D" parent="HeadOriginPos/Head"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00621319, 0.0693949, -0.00384033)
+fov = 120.0
+script = ExtResource("2_3lw4o")
+
+[node name="TextureRect" type="TextureRect" parent="HeadOriginPos/Head/Camera3D"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_6p4gg")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HeadOriginPos/Head/Camera3D"]
+auto_translate_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="HeadOriginPos/Head/Camera3D/SubViewportContainer"]
+auto_translate_mode = 1
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="bulletpoint" type="Marker3D" parent="HeadOriginPos/Head/Camera3D"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.473455, -0.280035, -1.96904)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_vthbu")

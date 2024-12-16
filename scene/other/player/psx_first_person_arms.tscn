@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy130k7ukpa31"]
+
+[ext_resource type="PackedScene" uid="uid://bcng7oklaq15c" path="res://assets/model/PSX_First_Person_Arms.glb" id="1_rymns"]
+
+[node name="PSX_First_Person_Arms" instance=ExtResource("1_rymns")]
